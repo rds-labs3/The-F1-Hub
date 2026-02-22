@@ -21,24 +21,38 @@ function buildNav(data) {
   const ul = document.querySelector('.nav-links');
   if (!ul) return;
 
-  const homeHref = (isIndex || isHighlight) ? 'index.html' : '../index.html';
-  const hlHref        = (isIndex || isHighlight) ? 'highlights.html' : '../highlights.html';
-  const inRoot = isIndex || isHighlight;
+  const inRoot   = isIndex || isHighlight;
+  const homeHref = inRoot ? 'index.html'      : '../index.html';
+  const hlHref   = inRoot ? 'highlights.html' : '../highlights.html';
   const teamHref = id => inRoot ? `teams/${id}.html` : `${id}.html`;
 
-  // Build teams dropdown items
-  const teamItems = data.teams.map(t =>
+  const teamLinks = data.teams.map(t =>
+    `<li class="desktop-team-link"><a href="${teamHref(t.id)}">${t.name}</a></li>`
+  ).join('');
+
+  const mobileTeamItems = data.teams.map(t =>
     `<li><a href="${teamHref(t.id)}">${t.name}</a></li>`
   ).join('');
 
   ul.innerHTML = `
     <li><a href="${homeHref}">Home</a></li>
-    <li class="nav-dropdown">
-      <button class="nav-dropdown-btn">Teams <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></button>
+
+    <!-- Desktop: individual team links shown inline -->
+    ${teamLinks}
+
+    <!-- Mobile only: Teams dropdown inside hamburger menu -->
+    <li class="mobile-dropdown">
+      <button class="nav-dropdown-btn">
+        Teams
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </button>
       <ul class="nav-dropdown-menu">
-        ${teamItems}
+        ${mobileTeamItems}
       </ul>
     </li>
+
     <li><a href="${hlHref}">Highlights</a></li>
   `;
 
@@ -48,18 +62,14 @@ function buildNav(data) {
       a.classList.add('active');
   });
 
-  // Dropdown toggle
-  const dropBtn = ul.querySelector('.nav-dropdown-btn');
+  // Mobile dropdown toggle
+  const dropBtn  = ul.querySelector('.nav-dropdown-btn');
   const dropMenu = ul.querySelector('.nav-dropdown-menu');
   if (dropBtn && dropMenu) {
     dropBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       dropMenu.classList.toggle('open');
       dropBtn.classList.toggle('open');
-    });
-    document.addEventListener('click', () => {
-      dropMenu.classList.remove('open');
-      dropBtn.classList.remove('open');
     });
   }
 
