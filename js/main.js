@@ -1,9 +1,10 @@
 // ─── Detect which page we're on ──────────────────────────────────────────────
-const page     = location.pathname.split('/').pop() || 'index.html';
-const isIndex  = page === 'index.html' || page === '';
-const isTeam   = !isIndex && page.endsWith('.html');
-const jsonPath = isIndex ? 'data/teamInfo.json' : '../data/teamInfo.json';
-const teamRoot = isIndex ? 'teams/' : '';
+const page        = location.pathname.split('/').pop() || 'index.html';
+const isIndex     = page === 'index.html' || page === '';
+const isHighlight = page === 'highlights.html';
+const inTeamsDir  = location.pathname.includes('/teams/');
+const isTeam      = inTeamsDir && page.endsWith('.html');
+const jsonPath    = (isIndex || isHighlight) ? 'data/teamInfo.json' : '../data/teamInfo.json';
 
 // ─── Fetch JSON then route ────────────────────────────────────────────────────
 fetch(jsonPath)
@@ -21,7 +22,7 @@ function buildNav(data) {
   if (!ul) return;
 
   const homeHref      = isIndex ? 'index.html'        : '../index.html';
-  const hlHref        = isIndex ? 'highlights.html'   : '../highlights.html';
+  const hlHref        = (isIndex || isHighlight) ? 'highlights.html' : '../highlights.html';
   const teamHref      = id => isIndex ? `teams/${id}.html` : `${id}.html`;
 
   // Build teams dropdown items

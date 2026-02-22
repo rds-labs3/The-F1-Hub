@@ -52,6 +52,7 @@
 .nav-dropdown-btn svg { transition: transform 0.2s; }
 .nav-dropdown-btn.open svg { transform: rotate(180deg); }
 
+/* Desktop dropdown menu — hidden by default, shown when .open */
 .nav-dropdown-menu {
   display: none;
   position: absolute;
@@ -83,16 +84,17 @@
   color: #fff;
 }
 
-/* Mobile: dropdown becomes a flat list inside hamburger menu */
+/* Mobile: show all teams flat in the hamburger menu, hide the button */
 @media (max-width: 768px) {
   .nav-dropdown-btn { display: none; }
   .nav-dropdown-menu {
-    display: block !important;
+    display: block;
     position: static;
     transform: none;
     background: none;
     border: none;
     box-shadow: none;
+    border-radius: 0;
     padding: 0;
     min-width: unset;
   }
@@ -100,6 +102,5 @@
     padding: 10px 24px;
     font-size: 0.9rem;
     color: #aaa;
-    border-bottom: none;
   }
 }
