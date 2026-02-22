@@ -1,0 +1,21 @@
+{
+  "highlight": {
+    "videoId": "dQw4w9WgXcQ",
+    "title": "Race Highlights — Round 1",
+    "description": "Watch the best moments from the opening round of the 2026 Formula 1 season.",
+    "race": {
+      "name": "Australian Grand Prix",
+      "circuit": "Albert Park Circuit",
+      "location": "Melbourne, Australia",
+      "round": "Round 1 of 24",
+      "date": "March 15, 2026"
+    },
+    "standings": [
+      { "pos": "1", "driver": "Lando Norris", "team": "McLaren", "points": "25" },
+      { "pos": "2", "driver": "Max Verstappen", "team": "Red Bull Racing", "points": "18" },
+      { "pos": "3", "driver": "Charles Leclerc", "team": "Ferrari", "points": "15" },
+      { "pos": "4", "driver": "Oscar Piastri", "team": "McLaren", "points": "12" },
+      { "pos": "5", "driver": "George Russell", "team": "Mercedes", "points": "10" }
+    ]
+  }
+}

@@ -20,22 +20,48 @@ function buildNav(data) {
   const ul = document.querySelector('.nav-links');
   if (!ul) return;
 
-  const homeHref  = isIndex ? 'index.html'   : '../index.html';
-  const teamHref  = id => isIndex ? `teams/${id}.html` : `${id}.html`;
+  const homeHref      = isIndex ? 'index.html'        : '../index.html';
+  const hlHref        = isIndex ? 'highlights.html'   : '../highlights.html';
+  const teamHref      = id => isIndex ? `teams/${id}.html` : `${id}.html`;
 
-  ul.innerHTML = `<li><a href="${homeHref}">Home</a></li>` +
-    data.teams.map(t =>
-      `<li><a href="${teamHref(t.id)}">${t.name}</a></li>`
-    ).join('');
+  // Build teams dropdown items
+  const teamItems = data.teams.map(t =>
+    `<li><a href="${teamHref(t.id)}">${t.name}</a></li>`
+  ).join('');
+
+  ul.innerHTML = `
+    <li><a href="${homeHref}">Home</a></li>
+    <li class="nav-dropdown">
+      <button class="nav-dropdown-btn">Teams <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></button>
+      <ul class="nav-dropdown-menu">
+        ${teamItems}
+      </ul>
+    </li>
+    <li><a href="${hlHref}">Highlights</a></li>
+  `;
 
   // Highlight active link
-  const current = page;
   ul.querySelectorAll('a').forEach(a => {
-    if (a.getAttribute('href').split('/').pop() === current)
+    if (a.getAttribute('href').split('/').pop() === page)
       a.classList.add('active');
   });
 
-  // Mobile toggle
+  // Dropdown toggle
+  const dropBtn = ul.querySelector('.nav-dropdown-btn');
+  const dropMenu = ul.querySelector('.nav-dropdown-menu');
+  if (dropBtn && dropMenu) {
+    dropBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropMenu.classList.toggle('open');
+      dropBtn.classList.toggle('open');
+    });
+    document.addEventListener('click', () => {
+      dropMenu.classList.remove('open');
+      dropBtn.classList.remove('open');
+    });
+  }
+
+  // Mobile hamburger toggle
   const hamburger = document.querySelector('.nav-hamburger');
   if (hamburger) {
     hamburger.addEventListener('click', () => ul.classList.toggle('open'));
