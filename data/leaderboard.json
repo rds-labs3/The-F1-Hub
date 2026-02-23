@@ -1,0 +1,26 @@
+{
+  "race": {
+    "name": "Australian Grand Prix",
+    "round": "Round 1 of 24",
+    "date": "March 15, 2026"
+  },
+  "fastestLap": {
+    "firstName": "Lando",
+    "lastName": "Norris",
+    "team": "mclaren",
+    "position": 1,
+    "time": "1:18.456"
+  },
+  "leaderboard": [
+    { "pos": 1,  "firstName": "Lando",   "lastName": "Norris",     "team": "mclaren",     "points": 25, "fastestLap": true  },
+    { "pos": 2,  "firstName": "Max",     "lastName": "Verstappen", "team": "redbull",     "points": 18, "fastestLap": false },
+    { "pos": 3,  "firstName": "Charles", "lastName": "Leclerc",    "team": "ferrari",     "points": 15, "fastestLap": false },
+    { "pos": 4,  "firstName": "Oscar",   "lastName": "Piastri",    "team": "mclaren",     "points": 12, "fastestLap": false },
+    { "pos": 5,  "firstName": "George",  "lastName": "Russell",    "team": "mercedes",    "points": 10, "fastestLap": false },
+    { "pos": 6,  "firstName": "Carlos",  "lastName": "Sainz",      "team": "williams",    "points": 8,  "fastestLap": false },
+    { "pos": 7,  "firstName": "Lewis",   "lastName": "Hamilton",   "team": "ferrari",     "points": 6,  "fastestLap": false },
+    { "pos": 8,  "firstName": "Fernando","lastName": "Alonso",     "team": "astonmartin", "points": 4,  "fastestLap": false },
+    { "pos": 9,  "firstName": "Lance",   "lastName": "Stroll",     "team": "astonmartin", "points": 2,  "fastestLap": false },
+    { "pos": 10, "firstName": "Esteban", "lastName": "Ocon",       "team": "haas",        "points": 1,  "fastestLap": false }
+  ]
+}
